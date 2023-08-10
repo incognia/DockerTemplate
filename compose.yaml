@@ -1,0 +1,16 @@
+version: '3.8'      # Versión de la sintaxis del archivo Docker Compose.
+services:           # Define los servicios que se ejecutarán en Docker Compose.
+  template:         # Nombre del servicio llamado "jupyter".
+    image: incogniadev/template:0.0.1-bookworm-slim # Imagen del contenedor.
+    build:          # Configuración para construir la imagen del contenedor.
+      context: .                        # Directorio de construcción.
+      dockerfile: Dockerfile            # Archivo Dockerfile.
+    container_name: Template            # Nombre del contenedor.
+    hostname: template                  # Nombre del host.
+    ports:           # Mapeo de puertos entre el host y el contenedor.
+      - 60022:22     # Mapea el puerto 10022 al 22 para SSH.
+    environment:     # Variables de entorno para el contenedor.
+      - TZ=America/Mexico_City          # Establece la zona horaria.
+    tty: true        # Asigna una terminal pseudo-TTY al contenedor.
+    stdin_open: true                    # Mantener STDIN abierto.
+    restart: always                     # Reinicio automático.
